@@ -1,4 +1,4 @@
-# Registrul Unic de Evidenta a Intreprinderilor Sociale - FrontEnd
+# Registrul Unic de Evidenta a Intreprinderilor Sociale - FrontEnd [![Travis build](https://travis-ci.org/gov-ithub/socent-frontend.svg?branch=master)](https://travis-ci.org/gov-ithub/socent)
 
 Construirea unui sistem informatic tip registru electronic ce va permite inregistrarea, modificarea, integrarea și analizarea tuturor datelor privind întreprinderile sociale și întreprinderile sociale de inserție;
 
@@ -11,7 +11,7 @@ Proiectul isi doreste a fi un exemplu de arhitectura, experienta vizitatori si d
 - Sistem de înregistrare și de verificare/administrare online
 
 ## Pentru cine e platforma?
-- Antreprenori Sociali: facilitate de inregistrare, editare si comunicare cu administratia 
+- Antreprenori Sociali: facilitate de inregistrare, editare si comunicare cu administratia
 - Publicul larg: informare asupra situatiei Economiei Sociale - impact, raspandire, oportunitati
 - Ministerul Muncii si ANOFM: clientul nostru :) centralizare date, usurinta in raportari, posibilitate sa ofere APIs cu date din registru catre alte ministere si publicului larg
 - Agentiile Locale: sistem de primire/inregistrare al intreprinderilor sociale, de verificare si atestare, de raportare situatii locale
