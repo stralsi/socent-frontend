@@ -27,7 +27,6 @@ Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a te
 
 ## Instalare
 ```
-npm install -g create-react-app
 git clone https://github.com/gov-ithub/socent-frontend.git
 cd socent-frontend
 npm install

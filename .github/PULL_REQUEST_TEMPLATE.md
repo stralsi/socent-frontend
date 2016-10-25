@@ -1,8 +1,7 @@
-### Fixes issue #...
+#### Fixes issue #...
 
-Here are the changes I propose:
--  
--  
--  
+#### Here are the changes I propose:
 
-@gov-ithub/socent
+#### Test plan:
+
+#### Suggested reviewers: @gov-ithub/socent, @...
