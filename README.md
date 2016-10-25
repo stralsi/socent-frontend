@@ -1,4 +1,4 @@
-# Registrul Unic de Evidenta a Intreprinderilor Sociale - FrontEnd [![Travis build](https://travis-ci.org/gov-ithub/socent-frontend.svg?branch=master)](https://travis-ci.org/gov-ithub/socent)
+## Registrul Unic de Evidenta a Intreprinderilor Sociale - FrontEnd [![Travis build](https://travis-ci.org/gov-ithub/socent-frontend.svg?branch=master)](https://travis-ci.org/gov-ithub/socent)
 
 Construirea unui sistem informatic tip registru electronic ce va permite inregistrarea, modificarea, integrarea și analizarea tuturor datelor privind întreprinderile sociale și întreprinderile sociale de inserție;
 
