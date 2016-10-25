@@ -21,8 +21,9 @@ Proiectul isi doreste a fi un exemplu de arhitectura, experienta vizitatori si d
 - [Jest](https://facebook.github.io/jest/)
 - [npm](https://github.com/npm/npm)
 - [Travis](https://travis-ci.org/)
-
+- [Auth0](https://auth0.com)
 Posibil să se schimbe în viitorul apropiat
+Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a testa/dezvolta local. Apoi modificati .env_template in .env cu credentialele voastre. E nevoie sa adaugati in Allowed Callback URLs, Allowed Logout URLs http://localhost:3000/admin, http://localhost:3000, http://localhost:3001/home. la Allowed Origins (CORS) bagati http://localhost:3000
 
 ## Instalare
 ```
@@ -55,3 +56,5 @@ Preferă pull request-uri peste issues unde e posibil, pull request-urile sunt p
 ## Cum poti intra in contact cu echipa?
 Prin email catre cezar.neaga@ithub.gov.ro sau pe [Slack](https://govithub.slack.com/messages/socent/details/)
 Vor aparea in curand mai multe detalii. Roger! Out!
+
+**Made with :heart: by [GovITHub](http://ithub.gov.ro)**
