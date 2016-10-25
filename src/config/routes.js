@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexRedirect } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import Main from '../components/Main';
 import Admin from '../components/Admin';
 
@@ -18,15 +18,14 @@ const auth = new AuthService(
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {
   if (!auth.isLoggedIn()) {
-    replace({ pathname: '/home' });
+    replace({ pathname: '/' });
   }
 }
 
 const Routes = (props) => (
   <Router {...props}>
     <Route path="/" component={Main} auth={auth}>
-      <IndexRedirect to="/home" />
-      <Route path="home" component={Home} />
+      <IndexRoute component={Home} />
       <Route path="setari" component={Settings} onEnter={requireAuth} />
       <Route path="admin" component={Admin} onEnter={requireAuth} />
       <Route path="*" component={NotFound} />

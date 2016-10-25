@@ -55,3 +55,5 @@ Preferă pull request-uri peste issues unde e posibil, pull request-urile sunt p
 ## Cum poti intra in contact cu echipa?
 Prin email catre cezar.neaga@ithub.gov.ro sau pe [Slack](https://govithub.slack.com/messages/socent/details/)
 Vor aparea in curand mai multe detalii. Roger! Out!
+
+**Made with :heart: by [GovITHub](http://ithub.gov.ro)**

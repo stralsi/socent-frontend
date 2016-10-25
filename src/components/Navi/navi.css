@@ -4,7 +4,19 @@
 .navbar .navbar-nav li.active a,
 .navbar .navbar-nav li.active a:hover,
 .navbar-nav li.dropdown.open a.dropdown-toggle { border-color: #00599e; }
-
+.navbar .navbar-nav li.logout a, .navbar .navbar-nav li.login-in a{
+  font-size: 20px;
+  border: none;
+  color: #000;
+}
+.navbar .navbar-nav li.logout a:hover {
+  border: none;
+  color: #999;
+}
+.navbar .navbar-nav li.login-in a:hover {
+  border: none;
+  color: green;
+}
 .navbar {
   width: 100%;
   background-color: #ffffff;
@@ -24,7 +36,7 @@
 }
 .navbar .navbar-header h1{
   display: block;
-  
+
 }
 .navbar .container a.navbar-brand {
   height: 60px;
