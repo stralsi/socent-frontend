@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "auth0-lock": "^10.4.0",
+    "axios": "^0.15.2",
     "belle": "^2.0.9",
     "dotenv": "^2.0.0",
     "eslint": "^3.8.1",

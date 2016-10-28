@@ -30,6 +30,7 @@ Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a te
 git clone https://github.com/gov-ithub/socent-frontend.git
 cd socent-frontend
 npm install
+npm install -g json-server
 ```
 
 ## Teste
@@ -38,6 +39,7 @@ Rulează `npm test`. `npm test` rulează doar testele nou introduse, de la ultim
 Ca și framework folosim [Jest](https://facebook.github.io/jest/). [Documentație mai completă >>](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests)
 
 ## Development
+- `json-server --watch db.json --port 3001`: pornește un REST API de test pe portul 3001
 - `npm start`: Servește aplicația pe portul 3000
 - `npm run build`: Pregătește aplicația pentru deployment (include minification, bundling, etc)
 - `npm run eject`: Elimină dependența de [create-react-app](https://github.com/facebookincubator/create-react-app/). Poate va fi necesar, dar până atunci please don't touch.

@@ -1,0 +1,6 @@
+{
+  "applications": [
+    { "id": 1, "title": "json-server-test1", "author": "typicode" }, 
+    { "id": 2, "title": "json-server-test2", "author": "typicode" }  
+  ]
+}
