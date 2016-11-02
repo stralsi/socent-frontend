@@ -1,40 +1,64 @@
 // @flow
 import React, { PropTypes as T, Component, Element } from 'react'
 import { IndexLink } from 'react-router'
-import { Navbar, Nav, NavItem, Grid, Row, Col } from 'react-bootstrap'
-import { StickyContainer, Sticky } from 'react-sticky'
+
 import AuthService from './utils/AuthService'
 import type { UserProfile } from './utils/AuthService'
-import './components/Navi/navi.css'
 import './App.css'
+import logo from '../public/logo.png'
 import Img from './components/Img'
-import Footer from './components/Footer'
+
+import Footer from './layout/Footer'
+import Sidebar from './layout/Sidebar'
+import Login from './layout/Login'
+import LoggedIn from './layout/LoggedIn'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+import { lightBlue500 } from 'material-ui/styles/colors'
+
+import { AppBar } from 'material-ui'
+
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: lightBlue500,
+  },
+});
 
 type Props = {
   auth: AuthService,
   children?: Element<any>,
   className?: string
 }
-
 type State = {
-  profile: UserProfile
+  profile: UserProfile,
+  open: boolean
 }
 
+const styles = {
+  container: {
+    margin: '0px auto',
+    width: '80vw'
+  },
+  svg: {
+    color: {lightBlue500}
+  }
+};
+
 class App extends Component {
+
   static contextTypes = {
     router: T.object
   }
   props: Props;
   state: State;
 
-  static propTypes = {
-    auth: T.instanceOf(AuthService)
-  }
-
   constructor(props: Props, context: any) {
     super(props, context);
     this.state = {
-      profile: this.props.auth.getProfile()
+      profile: this.props.auth.getProfile(),
+      open: false
     }
     this.props.auth.on('profile_updated', (newProfile) => {
       this.setState({ profile: newProfile})
@@ -45,65 +69,45 @@ class App extends Component {
     this.context.router.push('/');
     this.setState({profile: {}})
   }
-
+  handleToggleSidebar() {
+    this.setState({ open: !this.state.open })
+  }
   render(): Element<any> {
-    const { profile } = this.state;
-
     let children = null;
     if (this.props.children) {
       children = React.cloneElement(this.props.children, {
         auth: this.props.auth
       })
     }
-
-    let profile_details = null;
-    let login_button = null;
-    let logout_button = null;
-
+    let sidebar = null
     if (this.props.auth.isLoggedIn()) {
-      logout_button =
-        <NavItem className="logout" eventKey={1} onClick={this.logout.bind(this)}><i className="fa fa-sign-out" aria-hidden="true"></i></NavItem>;
-      // profile_details =
-      //   <Navbar.Text>Bun venit {profile.name}</Navbar.Text>;
-      if (profile.picture) {
-        profile_details =
-          <Img src={profile.picture} className='avatar' alt={profile.name} />;
+      if (this.state.profile) {
+        sidebar = <div>
+          <Sidebar
+            profile={this.state.profile}
+            handleToggleSidebar={this.handleToggleSidebar.bind(this)}
+            open={this.state.open}/>
+          </div>
       }
-    } else {
-      login_button = (
-        <NavItem className="login-in" eventKey={1} onClick={this.props.auth.login.bind(this)}>
-          <i className="fa fa-sign-in" aria-hidden="true"></i>
-        </NavItem>
-      );
     }
-
-
     return (
       <div>
-        <StickyContainer>
-          <Sticky>
-          <Navbar inverse>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <IndexLink to="/"><Img src='nav-logo.jpg' alt="Bine ati venit" /></IndexLink>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <Nav pullRight>
-                {login_button}
-                {logout_button}
-              </Nav>
-              {profile_details}
-            </Navbar.Collapse>
-          </Navbar>
-          </Sticky>
-        </StickyContainer>
-        <Grid>
-          <Row>
-            <Col xs={12} md={12}>{children}</Col>
-          </Row>
-        </Grid>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <AppBar
+            onLeftIconButtonTouchTap={() => this.setState({
+              open: !this.state.open
+            })}
+            style={{backgroundColor: '#004990'}}
+            iconElementLeft={!this.props.auth.isLoggedIn() ? <IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink> : null}
+            iconElementRight={this.props.auth.isLoggedIn() ? <LoggedIn profile={this.state.profile} auth={this.props.auth} logout={this.logout.bind(this)} /> : <Login onTouchTap={this.props.auth} />}
+          />
+        </MuiThemeProvider>
+        <div style={styles.container}>
+          {sidebar}
+          <div>
+            {children}
+          </div>
+        </div>
         <Footer />
       </div>
     );
