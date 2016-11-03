@@ -10,6 +10,11 @@ Proiectul isi doreste a fi un exemplu de arhitectura, experienta vizitatori si d
 - Promovarea situației sectorului prin hărți interactive și rapoarte statistice ( #infographics)
 - Sistem de înregistrare și de verificare/administrare online
 
+## Platforma de colaborare si coordonare
+- [Confluence](https://contribute.gov.ro/confluence/display/SA/Summary): Specificatii proiect
+- [JIRA](https://contribute.gov.ro/jira/browse/SE): Taskuri...
+Platformele sunt deschise inregistrarii. Fa-ti un cont si hai in echipa! Avem un sprint pana pe 15 Noiembrie.
+
 ## Pentru cine e platforma?
 - Antreprenori Sociali: facilitate de inregistrare, editare si comunicare cu administratia
 - Publicul larg: informare asupra situatiei Economiei Sociale - impact, raspandire, oportunitati
@@ -22,6 +27,8 @@ Proiectul isi doreste a fi un exemplu de arhitectura, experienta vizitatori si d
 - [npm](https://github.com/npm/npm)
 - [Travis](https://travis-ci.org/)
 - [Auth0](https://auth0.com)  
+- [RoR](http://rubyonrails.org/)  
+- [Material Design Components](http://www.material-ui.com)
 Posibil să se schimbe în viitorul apropiat
 Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a testa/dezvolta local. Apoi modificati .env_template in .env cu credentialele voastre. E nevoie sa adaugati in Allowed Callback URLs, Allowed Logout URLs http://localhost:3000/admin, http://localhost:3000, http://localhost:3001/home. la Allowed Origins (CORS) bagati http://localhost:3000
 
@@ -55,7 +62,6 @@ Dacă răspunsul e "da" pentru toate 3, procesul de code review ar trebui să fi
 Preferă pull request-uri peste issues unde e posibil, pull request-urile sunt primite cu brațele deschise oricând.
 
 ## Cum poti intra in contact cu echipa?
-Prin email catre cezar.neaga@ithub.gov.ro sau pe [Slack](https://govithub.slack.com/messages/socent/details/)
-Vor aparea in curand mai multe detalii. Roger! Out!
+Prin email catre cezar.neaga@ithub.gov.ro sau mai rapid pe [Slack](https://govithub.slack.com/messages/socent/details/)
 
 **Made with :heart: by [GovITHub](http://ithub.gov.ro)**
