@@ -12,7 +12,7 @@ Proiectul isi doreste a fi un exemplu de arhitectura, experienta vizitatori si d
 
 ## Platforma de colaborare si coordonare
 - [Confluence](https://contribute.gov.ro/confluence/display/SA/Summary): Specificatii proiect
-- [JIRA](https://contribute.gov.ro/jira/browse/SE): Taskuri...
+- [JIRA](https://contribute.gov.ro/jira/browse/SE): Taskuri...  
 Platformele sunt deschise inregistrarii. Fa-ti un cont si hai in echipa! Avem un sprint pana pe 15 Noiembrie.
 
 ## Pentru cine e platforma?
@@ -28,7 +28,7 @@ Platformele sunt deschise inregistrarii. Fa-ti un cont si hai in echipa! Avem un
 - [Travis](https://travis-ci.org/)
 - [Auth0](https://auth0.com)  
 - [RoR](http://rubyonrails.org/)  
-- [Material Design Components](http://www.material-ui.com)
+- [Material Design Components](http://www.material-ui.com)  
 Posibil să se schimbe în viitorul apropiat
 Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a testa/dezvolta local. Apoi modificati .env_template in .env cu credentialele voastre. E nevoie sa adaugati in Allowed Callback URLs, Allowed Logout URLs http://localhost:3000/admin, http://localhost:3000, http://localhost:3001/home. la Allowed Origins (CORS) bagati http://localhost:3000
 
@@ -46,7 +46,7 @@ Ca și framework folosim [Jest](https://facebook.github.io/jest/). [Documentați
 
 ## Development
 - `npm install -g json-server`
-- `json-server --watch api/home.json --port 3001`: adauga in folderul `/api` endpointurile de care ai nevoie. json server le va rula de acolo. schimba `--watch` cu ce vrei sa servesti. [documentatie](https://github.com/typicode/json-server)
+- `json-server --watch api/home.json --routes api/routes.json --port 3001`: adauga in folderul `/api` endpointurile de care ai nevoie. json server le va rula de acolo. [documentatie](https://github.com/typicode/json-server)
 - `npm start`: Servește aplicația pe portul 3000
 - `npm run build`: Pregătește aplicația pentru deployment (include minification, bundling, etc)
 - `npm run eject`: Elimină dependența de [create-react-app](https://github.com/facebookincubator/create-react-app/). Poate va fi necesar, dar până atunci please don't touch.
