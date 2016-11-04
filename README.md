@@ -30,7 +30,6 @@ Platformele sunt deschise inregistrarii. Fa-ti un cont si hai in echipa! Avem un
 - [RoR](http://rubyonrails.org/)  
 - [Material Design Components](http://www.material-ui.com)  
 Posibil să se schimbe în viitorul apropiat
-Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a testa/dezvolta local. Apoi modificati .env_template in .env cu credentialele voastre. E nevoie sa adaugati in Allowed Callback URLs, Allowed Logout URLs http://localhost:3000/admin, http://localhost:3000, http://localhost:3001/home. la Allowed Origins (CORS) bagati http://localhost:3000
 
 ## Instalare
 ```
@@ -45,6 +44,7 @@ Rulează `npm test`. `npm test` rulează doar testele nou introduse, de la ultim
 Ca și framework folosim [Jest](https://facebook.github.io/jest/). [Documentație mai completă >>](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests)
 
 ## Development
+Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a testa/dezvolta local. Apoi modificati .env_template in .env cu credentialele voastre. E nevoie sa adaugati in Allowed Callback URLs, Allowed Logout URLs http://localhost:3000/admin, http://localhost:3000, http://localhost:3001/home. la Allowed Origins (CORS) bagati http://localhost:3000  
 - `npm install -g json-server`
 - `json-server --watch api/home.json --routes api/routes.json --port 3001`: adauga in folderul `/api` endpointurile de care ai nevoie. json server le va rula de acolo. [documentatie](https://github.com/typicode/json-server)
 - `npm start`: Servește aplicația pe portul 3000
