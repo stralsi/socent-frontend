@@ -24,11 +24,14 @@ function Home(props) {
       {
         props.isLoading === true
           ? <Loading />
-          : <HomeUI
-               />
+          : <HomeUI />
       }
     </div>
   );
 }
+
+Home.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default Home;
