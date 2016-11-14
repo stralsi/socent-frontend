@@ -11,17 +11,15 @@ export default class HomeContainer extends Component {
     };
   }
   componentDidMount() {
-    fetch(`/public`, {
-      accept: 'application/json',
-    })
-    .then(utils.checkStatus)
-    .then(utils.parseJSON)
-    .then(response => {
-      this.setState({
-        isLoading: false,
-        mapdata: response.mapData
-      });
-    })
+    utils
+      .getEnterprisesPublic()
+      .then(enterprises => {
+        console.log(enterprises);
+        this.setState({
+          mapdata: enterprises.data.mapData,
+          isLoading: false
+        })
+      })
   }
   render() {
     return (

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import Loading from '../Loading'
-import {RadioButton, RadioButtonGroup, Divider, TextField, SelectField, MenuItem, DatePicker} from 'material-ui';
+import {RadioButton, Paper, RadioButtonGroup, Divider, TextField, SelectField, MenuItem, DatePicker} from 'material-ui';
 // import ComboBox from 'belle'
 import areIntlLocalesSupported from 'intl-locales-supported'
 let DateTimeFormat
@@ -22,11 +22,16 @@ const styles = {
     float: 'left',
     whiteSpace: 'nowrap'
   },
-
+  paper: {
+    width:'100%',
+    // textAlign: 'center',
+    padding: 20
+  }
 }
 function RegistrationUI(props) {
   return (
     <div>
+    <Paper style={styles.paper} zDepth={1}>
       <h1>Inregistrare</h1>
       <h4>Ce fel de inregistrare vrei sa inregistrezi?</h4>
       <RadioButtonGroup
@@ -223,6 +228,7 @@ function RegistrationUI(props) {
         * {fax: string}
         * {email:string, email}
       */}
+    </Paper>
     </div>
   );
 }
@@ -236,12 +242,13 @@ function Registration(props) {
         props.isLoading === true
           ? <Loading />
           : <RegistrationUI
-              enterprisesData={props.enterprisesData} />
+              enterprises={props.enterprises} />
       }
     </div>
   );
 }
 Registration.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  enterprises: PropTypes.object.isRequired
 };
 export default Registration;

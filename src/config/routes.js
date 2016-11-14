@@ -35,7 +35,7 @@ const Routes = (props) => (
       <Route path="despre" component={About} />
       <Route path="admin" component={AdminContainer} onEnter={requireAuth} />
       <Route path="admin/intreprinderi" component={EnterprisesContainer} onEnter={requireAuth} />
-      <Route path="admin/inregistrare" component={RegistrationContainer} onEnter={requireAuth} />
+      <Route path="admin/inregistrare/:id" component={RegistrationContainer} onEnter={requireAuth} />
       <Route path="admin/utilizatori" component={UsersContainer} onEnter={requireAuth} />
       <Route path="admin/profil" component={Profile} onEnter={requireAuth} />
       <Route path="admin/ajutor" component={Help} onEnter={requireAuth} />

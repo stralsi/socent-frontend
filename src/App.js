@@ -5,13 +5,14 @@ import { IndexLink } from 'react-router'
 import AuthService from './utils/AuthService'
 import type { UserProfile } from './utils/AuthService'
 import './App.css'
-import logo from '../public/logo.png'
+import logo from '../public/logo-mic.png'
 import Img from './components/Img'
+
 
 import Footer from './layout/Footer'
 import Sidebar from './layout/Sidebar'
-import Login from './layout/Login'
-import LoggedIn from './layout/LoggedIn'
+// import Login from './layout/Login'
+// import LoggedIn from './layout/LoggedIn'
 
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -52,7 +53,8 @@ const styles = {
   },
   svg: {
     color: {lightBlue500}
-  }
+  },
+
 };
 
 class App extends Component {
@@ -67,7 +69,7 @@ class App extends Component {
     super(props, context);
     this.state = {
       profile: this.props.auth.getProfile(),
-      open: true
+      open: true,
     }
     this.props.auth.on('profile_updated', (newProfile) => {
       this.setState({ profile: newProfile})
@@ -109,7 +111,6 @@ class App extends Component {
             title={<IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink>}
             style={{backgroundColor: '#004990', position: 'fixed'}}
             iconClassNameLeft={!this.props.auth.isLoggedIn() ? 'hidden' : null }
-            iconElementRight={this.props.auth.isLoggedIn() ? <LoggedIn profile={this.state.profile} auth={this.props.auth} logout={this.logout.bind(this)} /> : <Login onTouchTap={this.props.auth} />}
           />
         <div style={!this.props.auth.isLoggedIn() ? styles.containerPublic : styles.containerPrivate}>
           {sidebar}

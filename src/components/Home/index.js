@@ -30,6 +30,6 @@ function Home(props) {
   );
 }
 Home.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 export default Home;

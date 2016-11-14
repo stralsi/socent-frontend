@@ -50,20 +50,7 @@ export default class Sidebar extends Component {
               <ListItem
                 primaryText="Intreprinderi"
                 leftIcon={<ActionStore />}
-                initiallyOpen={false}
-                primaryTogglesNestedList={true}
-                nestedItems={[
-                  <ListItem
-                    key={1}
-                    insetChildren={true}
-                    primaryText="Lista"
-                    containerElement={<Link to="/admin/intreprinderi" />}/>,
-                  <ListItem
-                    key={2}
-                    insetChildren={true}
-                    primaryText="Inregistrare"
-                    containerElement={<Link to="/admin/inregistrare" />}/>,
-                ]}
+                containerElement={<Link to="/admin/intreprinderi" />}
               />
               <ListItem
                 primaryText="Utilizatori"
