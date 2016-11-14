@@ -11,7 +11,8 @@ type Props = {
 }
 function Footer(props: Props){
   return (
-    <div id='footer' className={!props.auth.isLoggedIn() ? 'section grey' : 'section grey ml'}>
+    <div id='footer' className='section grey ml'>
+      {/* className={!props.auth.isLoggedIn() ? 'section grey' : 'section grey ml'} */}
       <div className="logo_minister"><Img src={logo} alt='Ministerul Muncii' /></div>
       <p className="social-media">
         <a href="https://twitter.com" target="_blank" title="twitter"><i className="fa fa-twitter"></i></a>

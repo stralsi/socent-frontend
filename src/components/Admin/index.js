@@ -66,7 +66,7 @@ function AdminUI(props) {
               <TableRowColumn style={{width:'20%'}}>{listItem.applicationDate}</TableRowColumn>
               <TableRowColumn style={{width:'30%'}}>{listItem.owner}</TableRowColumn>
               <TableRowColumn style={{textAlign: 'right', width:'20%'}}>
-                <IconButton containerElement={<Link to={`/admin/inregistrare/:${listItem.id}`} />}>
+                <IconButton containerElement={<Link to={`/admin/inregistrare/${listItem.id}`} />}>
                   <EditorModeEdit/>
                 </IconButton>
                 <IconButton onTouchTap={() => props.initiateDeleteEntry()}>

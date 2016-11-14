@@ -5,11 +5,17 @@ import FontIcon from 'material-ui/FontIcon';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import RaisedButton from 'material-ui/RaisedButton';
+//import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { lightBlue500 } from 'material-ui/styles/colors'
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: lightBlue500,
+  },
+});
 export default class ToolbarNavi extends React.Component {
 
   constructor(props) {
@@ -22,23 +28,24 @@ export default class ToolbarNavi extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <Toolbar>
           <ToolbarGroup firstChild={true}>
             <DropDownMenu  onChange={this.handleChange}>
-            {this.props.list.map(listItem => (
+            {/* {this.props.list.map(listItem => (
               <MenuItem
                 key={listItem.id}
-                primaryText={`Doar ${listItem.status}`}/>
-                // handleClick={props.handleClick.bind(null, listItem)}
-            ))}
+                //primaryText={`Doar ${listItem.status}`}
+              />
+                handleClick={props.handleClick.bind(null, listItem)}
+            ))} */}
             </DropDownMenu>
           </ToolbarGroup>
           <ToolbarGroup>
             <ToolbarTitle text="Sortare" />
             <FontIcon className="muidocs-icon-custom-sort" style={{color: 'black'}}/>
             <ToolbarSeparator />
-            <RaisedButton label={`Adauga ${this.props.singular}`}  primary={true} />
+            {/* <RaisedButton label={`Adauga ${this.props.singular}`}  primary={true} /> */}
             <IconMenu
               iconButtonElement={
                 <IconButton touch={true}>

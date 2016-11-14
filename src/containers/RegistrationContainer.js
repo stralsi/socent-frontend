@@ -10,11 +10,13 @@ export default class RegistrationContainer extends Component {
     };
   }
   componentDidMount() {
+    const id = this.props.params.id
+
     utils
-      .getEnterprises()
-      .then(enterprises => {
+      .getEnterprise(id)
+      .then(enterprise => {
         this.setState({
-          enterprises: enterprises.data,
+          enterprise: enterprise.data,
           isLoading: false
         })
       })

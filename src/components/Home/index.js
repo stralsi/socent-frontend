@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Loading from '../Loading'
 const styles = {
   container: {
@@ -14,9 +14,7 @@ function HomeUI(props) {
     </div>
   );
 }
-HomeUI.propTypes = {
-  mapData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
-};
+
 function Home(props) {
   return (
     <div style={styles.container}>
@@ -24,12 +22,10 @@ function Home(props) {
         props.isLoading === true
           ? <Loading />
           : <HomeUI
-              mapData={props.mapData} />
+              />
       }
     </div>
   );
 }
-Home.propTypes = {
-  isLoading: PropTypes.bool.isRequired
-};
+
 export default Home;
