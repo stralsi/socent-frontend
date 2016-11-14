@@ -15,7 +15,7 @@ function HomeUI(props) {
   );
 }
 HomeUI.propTypes = {
-  mapData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+
 };
 function Home(props) {
   return (
@@ -24,7 +24,7 @@ function Home(props) {
         props.isLoading === true
           ? <Loading />
           : <HomeUI
-              mapData={props.mapData} />
+               />
       }
     </div>
   );
