@@ -1,26 +1,25 @@
 import React, { PropTypes } from 'react'
 import Loading from '../Loading'
-import ToolbarNavi from '../ToolbarNavi'
+// import ToolbarNavi from '../ToolbarNavi'
 const styles = {
   containerPrivate: {
     display: "block",
-    minHeight: "calc(100vh - 110px)",
-    marginLeft: "256px"
+    minHeight: "calc(100vh - 110px)"
   }
 }
 function EnterprisesUI(props) {
   return (
     <div>
-      <ToolbarNavi
+      {/* <ToolbarNavi
         singular="Intreprindere"
-        list={props.enterprisesData}/>
+        list={props.enterprises}/> */}
       <h1>Lista Intreprinderi</h1>
 
     </div>
   );
 }
 EnterprisesUI.propTypes = {
-  enterprisesData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  enterprises: PropTypes.array,
 };
 function Enterprises(props) {
   return (
@@ -29,12 +28,13 @@ function Enterprises(props) {
         props.isLoading === true
           ? <Loading />
           : <EnterprisesUI
-              enterprisesData={props.enterprisesData} />
+              enterprises={props.enterprises} />
       }
     </div>
   );
 }
 Enterprises.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
+  enterprises: PropTypes.array
 };
 export default Enterprises;

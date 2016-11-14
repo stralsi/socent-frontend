@@ -2,74 +2,83 @@ import React, {PropTypes, Component} from 'react'
 import utils from '../utils'
 import Admin from '../components/Admin'
 import axios from 'axios'
+
+
 export default class AdminContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      profile: this.props.auth.getProfile(),
       isLoading: true,
-      mapdata: {},
+      enterprises: [],
       modalState: false,
       submissionDate: null,
-      enterpriseName: ''
+      enterpriseName: '',
+      enterpriseNumber: '',
+      openConfirm: false
     };
 
   }
   handleModalOpen() {
     this.setState({modalState: true});
   }
-  addEnterpriseEntry({ submissionDate, enterpriseName } = this.state){
-    axios.post('/enterprises', {
-      id: utils.uniqueId(),
+  addEnterpriseEntry(enterprise){
+    const newEnterprise = {
+      number: this.state.enterpriseNumber,
       name: this.state.enterpriseName,
-      applicationDate: this.state.submissionDate
-    })
-    .then(function (response) {
-      console.log(response);
+      applicationDate: this.state.submissionDate,
+      //owner: this.state.profile.name
+    }
+    axios.post('https://socent.cezarneaga.eu/api/v1/enterprises', newEnterprise)
+    .then(response => {
+      const enterprise = response.data.enterprise
+      this.setState({
+        enterprises: this.state.enterprises.concat([enterprise]),
+        modalState: false,
+        submissionDate: null
+      })
     })
     .catch(function (error) {
       console.log(error);
+    })
+  }
+  initiateDeleteEntry() {
+    this.setState({
+      openConfirm: true
     });
-    // fetch('http://localhost:3001/enterprises', {
-    //   method: 'post',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   data: JSON.stringify({
-    //     "id": utils.uniqueId,
-    //     "applicationDate": submissionDate,
-    //     "name": enterpriseName
-    //   })
-    // }).then(function(response) {
-    //   return response.json()
-    //
-    // }).then(function(json) {
-    //   console.log('parsed json: ', json)
-    // }).catch(function(ex) {
-    //   console.log('parsing failed: ', ex)
-    // });
+  }
+  deleteEnterpriseEntry(id) {
+    axios.delete(`https://socent.cezarneaga.eu/api/v1/enterprises/${id}`)
+    //axios.patch(`https://socent.cezarneaga.eu/api/v1/enterprises/${id}`,{status:10})
+    const enterprises = this.state.enterprises.filter(enterprise => enterprise.id !== id)
+    this.setState({
+      openConfirm: false,
+      enterprises: enterprises
+    });
   }
   handleModalClose() {
     this.setState({modalState: false});
   }
   handleDateChange(e, date) {
-    this.setState({ submissionDate: date }, () => console.log('date:', this.state.submissionDate));
+    this.setState({ submissionDate: date })
   }
   handleNameChange(e) {
-    this.setState({ enterpriseName: e.target.value }, () => console.log('name:', this.state.enterpriseName));
+    this.setState({ enterpriseName: e.target.value })
   }
+  handleNumberChange(e) {
+    this.setState({ enterpriseNumber: e.target.value })
+  }
+
   componentDidMount() {
-    fetch(`/public`, {
-      accept: 'application/json',
-    })
-    .then(utils.checkStatus)
-    .then(utils.parseJSON)
-    .then(response => {
-      this.setState({
-        isLoading: false,
-        mapdata: response.mapData
-      });
-    })
+    utils
+      .getEnterprises()
+      .then(enterprises => {
+        this.setState({
+          enterprises: enterprises.data.enterprises,
+          isLoading: false
+        })
+      })
+
   }
   render() {
     return (
@@ -80,11 +89,16 @@ export default class AdminContainer extends Component {
           handleModalClose={this.handleModalClose.bind(this)}
           handleDateChange={this.handleDateChange.bind(this)}
           handleNameChange={this.handleNameChange.bind(this)}
+          handleNumberChange={this.handleNumberChange.bind(this)}
           addEnterpriseEntry={this.addEnterpriseEntry.bind(this)}
+          deleteEnterpriseEntry={this.deleteEnterpriseEntry.bind(this)}
+          initiateDeleteEntry={this.initiateDeleteEntry.bind(this)}
           modalState={this.state.modalState}
           submissionDate={this.state.submissionDate}
           enterpriseName={this.state.enterpriseName}
-          enterprisesData={this.state.mapdata} />
+          enterpriseNumber={this.state.enterpriseNumber}
+          enterprises={this.state.enterprises}
+          openConfirm={this.state.openConfirm}/>
       </div>
     );
   }

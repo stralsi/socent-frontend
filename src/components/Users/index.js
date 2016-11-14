@@ -14,7 +14,7 @@ function UsersUI(props) {
   );
 }
 UsersUI.propTypes = {
-  enterprisesData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+
 };
 function Users(props) {
   return (
@@ -23,7 +23,7 @@ function Users(props) {
         props.isLoading === true
           ? <Loading />
           : <UsersUI
-              enterprisesData={props.enterprisesData} />
+              />
       }
     </div>
   );

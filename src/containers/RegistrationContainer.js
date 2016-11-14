@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import Registration from '../components/Registration'
-
+import utils from '../utils'
 export default class RegistrationContainer extends Component {
   constructor(props) {
     super(props);
@@ -10,23 +10,23 @@ export default class RegistrationContainer extends Component {
     };
   }
   componentDidMount() {
-    fetch(`/enterprises`, {
-      accept: 'application/json',
-    })
-			.then(res => res.json())
-			.then(data => {
+    const id = this.props.params.id
+
+    utils
+      .getEnterprise(id)
+      .then(enterprise => {
         this.setState({
-          isLoading: false,
-          enterprises: data.enterprisesData
-        });
-			});
+          enterprise: enterprise.data,
+          isLoading: false
+        })
+      })
 	}
   render() {
     return (
       <div>
         <Registration
           isLoading={this.state.isLoading}
-          enterprisesData={this.state.enterprises} />
+          enterprises={this.state.enterprises} />
       </div>
     );
   }

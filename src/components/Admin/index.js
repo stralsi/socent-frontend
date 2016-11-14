@@ -1,105 +1,124 @@
 import React, { PropTypes } from 'react'
-import Loading from '../Loading'
-import { RaisedButton, FlatButton, Dialog, TextField, DatePicker } from 'material-ui';
-import ActionNoteAdd from 'material-ui/svg-icons/action/note-add';
-import areIntlLocalesSupported from 'intl-locales-supported'
-let DateTimeFormat
-if (areIntlLocalesSupported(['ro', 'ro-RO'])) {
-  DateTimeFormat = global.Intl.DateTimeFormat
-} else {
-  const IntlPolyfill = require('intl')
-  DateTimeFormat = IntlPolyfill.DateTimeFormat
-  require('intl/locale-data/jsonp/ro')
-  require('intl/locale-data/jsonp/ro-RO')
-}
+
+import { Link } from 'react-router'
+import { IconButton, RefreshIndicator, Snackbar } from 'material-ui';
+
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import { cyan500 } from 'material-ui/styles/colors'
+import AddEntry from '../AddEntry'
 const styles = {
-  button: {
-    marginRight: 20
-  }
+  refresh: {
+    display: 'inline-block',
+    position: 'relative',
+    float: 'right',
+    marginRight: 30,
+    marginTop: -84,
+    zIndex: 1200,
+    backgroundColor: 'none',
+    boxShadow: 'none'
+  },
+
 }
-const customModalStyle = {
-  width: 350,
-  maxWidth: 'none',
-};
+
+
 function AdminUI(props) {
-  const actions = [
-    <FlatButton
-      label="Cancel"
-      primary={true}
-      onTouchTap={props.handleModalClose}
-      style={styles.button}
-    />,
-    <RaisedButton
-      label="Submit"
-      primary={true}
-      onTouchTap={props.addEnterpriseEntry}
-    />,
-  ];
+
   return (
-    <div>
+    <div style={{position: 'relative'}}>
+
       <h1>Bine ati venit!</h1>
       <br /><br />
-      <div>
-        <RaisedButton
-          label="Inregistreaza o cerere primita"
-          primary={true}
-          onTouchTap={props.handleModalOpen}
-          icon={<ActionNoteAdd />}
-          style={styles.button}
+      <AddEntry
+        handleModalOpen={props.handleModalOpen}
+        handleModalClose={props.handleModalClose}
+        modalState={props.modalState}
+        handleNumberChange={props.handleNumberChange}
+        handleNameChange={props.handleNameChange}
+        handleDateChange={props.handleDateChange}
+        submissionDate={props.submissionDate}
+        addEnterpriseEntry={props.addEnterpriseEntry}
+        deleteEnterpriseEntry={props.deleteEnterpriseEntry}
         />
-        <Dialog
-          title="Inregistrare depunere cerere certificare"
-          actions={actions}
-          modal={true}
-          contentStyle={customModalStyle}
-          open={props.modalState}
+      <br/><br/>
+      <div style={{width: '80%'}}>
+        <h3>Lista cererilor primite si neintrate in procesare</h3>
+        <Table>
+          <TableHeader
+            displaySelectAll={false}
+            adjustForCheckbox={false}>
+            <TableRow style={{height:30}}>
+              <TableHeaderColumn style={{width:'30%', height:20, color: 'white', backgroundColor: cyan500, fontSize:14 }}>Intreprindere</TableHeaderColumn>
+              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: cyan500, fontSize:14, width:'20%' }}>Data Depunere Aplicare</TableHeaderColumn>
+              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: cyan500, fontSize:14, width:'30%' }}>Inregistrata de...</TableHeaderColumn>
+              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: cyan500, fontSize:14, textAlign: 'right', width:'20%' }}>Actiuni</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+            displayRowCheckbox={false}>
+            {props.enterprises.map(listItem => (
+            <TableRow
+              key={listItem.id}
+              >
+              <TableRowColumn style={{width:'30%'}}>{listItem.name}</TableRowColumn>
+              <TableRowColumn style={{width:'20%'}}>{listItem.applicationDate}</TableRowColumn>
+              <TableRowColumn style={{width:'30%'}}>{listItem.owner}</TableRowColumn>
+              <TableRowColumn style={{textAlign: 'right', width:'20%'}}>
+                <IconButton containerElement={<Link to={`/admin/inregistrare/${listItem.id}`} />}>
+                  <EditorModeEdit/>
+                </IconButton>
+                <IconButton onTouchTap={() => props.initiateDeleteEntry()}>
+                  <ActionDelete />
+                </IconButton>
+                <Snackbar
+                  open={props.openConfirm}
+                  message="Esti sigur ca vrei sa stergi inregistrarea?"
+                  action="confirm"
+                  //onRequestClose={this.handleRequestClose}
+                  onActionTouchTap={() => props.deleteEnterpriseEntry(listItem.id)}
+                />
+              </TableRowColumn>
+            </TableRow>
+            ))}
 
-        >
-          <form onSubmit={props.addEnterpriseEntry}>
-            <TextField
-              floatingLabelFixed={true}
-              floatingLabelText="Numele Interprinderii Aplicante"
-              onChange={props.handleNameChange}
-              value={props.enterpriseName}
-            />
-            <DatePicker
-              hintText="Introduceti data depunerii dosarului"
-              DateTimeFormat={DateTimeFormat}
-              okLabel="OK"
-              defaultDate={new Date()}
-              autoOk={true}
-              maxDate={new Date()}
-              cancelLabel="Anulati"
-              locale="ro"
-              onChange={props.handleDateChange}
-              value={props.submissionDate}
-            />
-
-          </form>
-        </Dialog>
+          </TableBody>
+        </Table>
       </div>
 
     </div>
   );
 }
 AdminUI.propTypes = {
-  enterprisesData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
-};
+  enterprises: PropTypes.array.isRequired,
+}
+
 function Admin(props) {
   return (
     <div>
-      {
-        props.isLoading === true
-          ? <Loading />
+        {props.isLoading === true
+          ? <RefreshIndicator
+              size={50}
+              left={10}
+              top={0}
+              loadingColor='white'
+              status="loading"
+              style={styles.refresh}
+            />
           : <AdminUI
               handleModalOpen={props.handleModalOpen}
               handleModalClose={props.handleModalClose}
               handleNameChange={props.handleNameChange}
+              handleNumberChange={props.handleNumberChange}
               handleDateChange={props.handleDateChange}
               addEnterpriseEntry={props.addEnterpriseEntry}
+              deleteEnterpriseEntry={props.deleteEnterpriseEntry}
+              initiateDeleteEntry={props.initiateDeleteEntry}
               submissionDate={props.submissionDate}
               modalState={props.modalState}
-              enterprisesData={props.enterprisesData} />
+              enterprises={props.enterprises}
+              openConfirm={props.openConfirm} />
       }
     </div>
   );
