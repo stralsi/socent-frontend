@@ -14,6 +14,9 @@ function HomeUI(props) {
     </div>
   );
 }
+HomeUI.propTypes = {
+
+};
 
 function Home(props) {
   return (
@@ -22,7 +25,7 @@ function Home(props) {
         props.isLoading === true
           ? <Loading />
           : <HomeUI
-              />
+               />
       }
     </div>
   );
