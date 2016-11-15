@@ -14,7 +14,8 @@ if (areIntlLocalesSupported(['ro', 'ro-RO'])) {
 }
 const styles = {
   button: {
-    marginRight: 5
+    marginRight: 5,
+    color:{lightBlue900}
   },
   modal: {
     width: 350,
@@ -26,13 +27,13 @@ function AddEntry(props) {
   const actions = [
     <FlatButton
       label="Anulati"
-      primary={true}
       onTouchTap={props.handleModalClose}
       style={styles.button}
     />,
     <RaisedButton
       label="Salveaza"
-      primary={true}
+      labelColor='white'
+      backgroundColor={lightBlue900}
       onTouchTap={props.addEnterpriseEntry}
     />,
   ];

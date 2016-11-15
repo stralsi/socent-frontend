@@ -21,12 +21,12 @@ export default class Entity {
   _version: APIVersion;
 
   constructor(
-    baseURI: string, 
+    baseURI: string,
     version: APIVersion,
   ) {
     this._baseURI = baseURI;
     this._version = version;
-  }  
+  }
 
   _buildEndpoint(
     endpoint: APIEndpoint,
@@ -57,7 +57,7 @@ export default class Entity {
     endpoint: APIEndpoint,
     id: number,
   ): Promise<Object> {
-    return axios.get(this._buildEndpoint(endpoint) + '/' + id);  
+    return axios.get(this._buildEndpoint(endpoint) + '/' + id);
   }
 
   _get(
@@ -66,14 +66,14 @@ export default class Entity {
   ): Promise<Object> {
     return axios.get(
       this._buildEndpoint(endpoint) + '?' + this._buildQueryString(params),
-    );  
+    );
   }
 
   _deleteID(
     endpoint: APIEndpoint,
     id: number,
   ): Promise<Object> {
-    return axios.delete(this._buildEndpoint(endpoint) + '/' + id);  
+    return axios.delete(this._buildEndpoint(endpoint) + '/' + id);
   }
 
   _post(

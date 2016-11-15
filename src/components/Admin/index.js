@@ -128,5 +128,6 @@ function Admin(props) {
 }
 Admin.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  enterprises: PropTypes.array.isRequired
 };
 export default Admin;

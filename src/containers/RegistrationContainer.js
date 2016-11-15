@@ -16,7 +16,7 @@ export default class RegistrationContainer extends Component {
     const id = this.props.params.id
 
     this.API
-      .getEnterprise
+      .getEnterprise()
       .getByID(id)
       .then(enterprise => {
         this.setState({

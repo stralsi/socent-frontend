@@ -82,7 +82,7 @@ export default class AdminContainer extends Component {
       .list({'status': 'neq|10'})
       .then(enterprises => {
         this.setState({
-          enterprises: enterprises.data,
+          enterprises: enterprises.data.enterprises,
           isLoading: false
         })
       });
